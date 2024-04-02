@@ -8,12 +8,17 @@ Este projeto é uma aplicação Java/Spring Boot para gerenciamento de arquivos 
 
 ## Configuração
 
-Antes de executar a aplicação, é necessário configurar suas credenciais da AWS e o nome do bucket no arquivo `application.properties`. Certifique-se de ter as permissões adequadas para acessar e gerenciar objetos no Amazon S3.
+Antes de executar a aplicação, é necessário configurar suas credenciais da AWS e o nome do bucket no arquivo `application.yaml`. Certifique-se de ter as permissões adequadas para acessar e gerenciar objetos no Amazon S3.
 
-```properties
-aws.accessKeyId=YOUR_ACCESS_KEY_ID
-aws.secretKey=YOUR_SECRET_ACCESS_KEY
-aws.bucket.name=YOUR_BUCKET_NAME
+```yaml
+aws:
+  region:
+    static: ${AWS-REGION:us-east-2}
+  credentials:
+    access-key: ${YOUR_ACCESS_KEY:test}
+    secret-key: ${YOUR_SECRET_KEY:test}
+  bucket:
+    name: ${BUCKET_NAME:amazon-bucket-test}
 ```
 
 ## Funcionalidades
