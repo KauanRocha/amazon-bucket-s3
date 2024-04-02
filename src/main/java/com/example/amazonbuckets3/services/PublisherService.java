@@ -5,18 +5,16 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import com.amazonaws.services.s3.AmazonS3;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Objects;
 
 public class PublisherService {
 
-    @Value("${bucket-name}")
+    @Value("${aws.bucket.name}")
     private String bucketName;
     private final AmazonS3 s3Client;
 

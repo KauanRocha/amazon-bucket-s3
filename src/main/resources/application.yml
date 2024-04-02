@@ -10,10 +10,6 @@ spring:
       ddl-auto: update
     show-sql: false
 
-application:
-  bucket:
-    name: ${BUCKET_NAME:amazon-bucket-test}
-
 aws:
   region:
     static: ${AWS-REGION:us-east-2}
@@ -21,5 +17,7 @@ aws:
   credentials:
     access-key: ${YOUR_ACCESS_KEY:test}
     secret-key: ${YOUR_SECRET_KEY:test}
+  bucket:
+    name: ${BUCKET_NAME:amazon-bucket-test}
   stack:
     auto: false
