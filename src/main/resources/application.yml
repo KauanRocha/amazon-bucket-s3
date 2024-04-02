@@ -1,0 +1,25 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/server
+    username: server
+    password: server
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+application:
+  bucket:
+    name: ${BUCKET_NAME:amazon-bucket-test}
+
+aws:
+  region:
+    static: ${AWS-REGION:us-east-2}
+  output: json
+  credentials:
+    access-key: ${YOUR_ACCESS_KEY:test}
+    secret-key: ${YOUR_SECRET_KEY:test}
+  stack:
+    auto: false
