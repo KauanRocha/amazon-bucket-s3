@@ -2,9 +2,10 @@ package com.example.amazonbuckets3.controllers;
 
 
 import com.example.amazonbuckets3.services.PublisherService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -18,6 +19,24 @@ public class PublisherController {
 
     @PostMapping
     public void publisherFileToBucket(MultipartFile multipartFile, String fileName) {
-        publisherService.publisher(multipartFile, fileName);
+        publisherService.publishFile(multipartFile, fileName);
+    }
+
+    @PostMapping("/upload")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("fileName") String fileName) {
+        publisherService.publishFile(file, fileName);
+    }
+
+    @GetMapping("/download/{objectKeyName}")
+    @ResponseStatus(HttpStatus.OK)
+    public Resource downloadFile(@PathVariable String objectKeyName) {
+        return publisherService.downloadFile(objectKeyName);
+    }
+
+    @DeleteMapping("/delete/{objectKey}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteFile(@PathVariable String objectKey) {
+        publisherService.deleteObject(objectKey);
     }
 }
